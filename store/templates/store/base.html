@@ -25,11 +25,12 @@
         
         <ul class="sidebar-nav">
         {% if user.is_authenticated %}
-            <li>User: {{ user.first_name }}</li>
+            <li>User: {{ user.username }}</li>
             <li><a href="{% url 'view-loaned' %}">My Borrowed</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>   
+            <li><a href="{% url 'logoutView' %}">Logout</a></li>   
         {% else %}
-            <!-- <li><a href="{% url 'login'%}">Login</a></li>    -->
+             <li><a href="{% url 'loginView'%}">Login</a></li>   
+             <li><a href="{% url 'registerView'%}">Register</a></li>   
         {% endif %} 
         </ul>
 
