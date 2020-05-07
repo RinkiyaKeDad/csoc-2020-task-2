@@ -19,8 +19,15 @@
   <dt>Your Rating:</dt>
   <dd>
     <form action="{%url 'urating-book' book.id%}" method="POST">
-      <input name="urating" type="number" min="0" max="10" />
-      <button type="submit">Submit Rating</button>
+      <input
+        name="urating"
+        type="number"
+        min="0"
+        max="10"
+        placeholder="0-10"
+        required
+      />
+      <button class="btn btn-success" type="submit">Submit Rating</button>
     </form>
   </dd>
 </dl>

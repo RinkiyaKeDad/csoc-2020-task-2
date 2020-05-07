@@ -22,7 +22,7 @@ def bookDetailView(request, bid):
     }
     # START YOUR CODE HERE
     context['book'] = Book.objects.get(pk=bid)
-    specificBook = BookCopy.objects.filter(book=bid, status=False)
+    specificBook = BookCopy.objects.filter(book=bid, status=True)
     context['num_available'] = specificBook.count()
 
     return render(request, template_name, context=context)
@@ -70,12 +70,12 @@ def loanBookView(request):
     '''
     # START YOUR CODE HERE
     book_id = request.POST['bid']  # get the book id from post data
-    booksOfThatId = BookCopy.objects.filter(book=book_id, status=False)
+    booksOfThatId = BookCopy.objects.filter(book=book_id, status=True)
     if booksOfThatId.count() != 0:
         singleBook = booksOfThatId[0]
         singleBook.borrower = request.user
         singleBook.borrow_date = date.today()
-        singleBook.status = True
+        singleBook.status = False
         singleBook.save()
         response_data['message'] = "success"
 
@@ -103,7 +103,7 @@ def returnBookView(request):
         singleBook = BookCopy.objects.get(pk=key)
         singleBook.borrower = None
         singleBook.borrow_date = None
-        singleBook.status = False
+        singleBook.status = True
         singleBook.save()
         response_data['message'] = "success"
     except:
